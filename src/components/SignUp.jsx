@@ -15,8 +15,8 @@ const SignUp = () => {
   const { signIn } = useContext(AuthContext);
 
   // Set your backend endpoints here:
-  const signUpUrl = 'https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/api/auth/signup';
-  const signInUrl = 'https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/api/auth/signin';
+  const signUpUrl = 'https://foi-data-request-backend-88ad83e1d7ba.herokuapp.com/api/auth/signup';
+  const signInUrl = 'https://foi-data-request-backend-88ad83e1d7ba.herokuapp.com/api/auth/signin';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
