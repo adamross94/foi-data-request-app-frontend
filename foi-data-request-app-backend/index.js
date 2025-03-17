@@ -5,26 +5,27 @@ const sequelize = require('./config/database'); // Import the Sequelize instance
 
 const app = express();
 
-// Enable CORS with specified domains
+// Enable CORS
 app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://foi-data-app-frontend-a3384cca308e.herokuapp.com',
+      'https://foi-data-app-frontend-a3384cca308e.herokuapp.com'
     ],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     optionsSuccessStatus: 200,
   })
 );
 
-// Explicitly handle preflight requests (helpful if some requests still fail)
+// Explicitly handle OPTIONS (preflight) for all routes
 app.options('*', cors());
 
 // Parse incoming JSON
 app.use(express.json());
 
-// Basic test route
+// Test route
 app.get('/', (req, res) => {
   res.send('FOI & Data Request Management API');
 });
@@ -37,7 +38,7 @@ app.use('/api/auth', authRoutes);
 const requestRoutes = require('./routes/requests');
 app.use('/api/requests', requestRoutes);
 
-// Sync models with the database
+// Sync models
 sequelize.sync()
   .then(() => {
     console.log('Database synced successfully');
