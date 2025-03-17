@@ -12,7 +12,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       // Send sign-in data to backend API for authentication
-      const response = await axios.post('https://foi-data-app-frontend-a3384cca308e.herokuapp.com/signin', form);
+      const response = await axios.post('https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/signin', form);
 
       // Store the token and user information using context
       signIn(response.data.token, response.data.user);
