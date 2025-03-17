@@ -1,15 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./config/database');  // Import the sequelize instance
+const sequelize = require('./config/database');  // Import the Sequelize instance
 
 const app = express();
 
-// Enable CORS for the deployed frontend
+// Enable CORS for the production frontend URL
 app.use(cors({
-  origin: 'https://foi-data-app-frontend-a3384cca308e.herokuapp.com', // Allow your published frontend's URL
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  credentials: true,
+  origin: 'https://foi-data-app-frontend-a3384cca308e.herokuapp.com', // Allow your published frontend
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed methods
+  credentials: true, // Enable credentials if needed (cookies, JWT)
 }));
 
 app.use(express.json());
@@ -27,7 +27,7 @@ app.use('/api/auth', authRoutes);
 const requestRoutes = require('./routes/requests');
 app.use('/api/requests', requestRoutes);
 
-// Sync models with database
+// Sync models with the database
 sequelize.sync()
   .then(() => {
     console.log('Database synced successfully');
