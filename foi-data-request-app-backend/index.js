@@ -6,12 +6,17 @@ const sequelize = require('./config/database');  // Import the Sequelize instanc
 const app = express();
 
 // Enable CORS for the production frontend URL
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  credentials: true,
-  optionsSuccessStatus: 200,
-}));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173', 
+      'https://foi-data-app-frontend-a3384cca308e.herokuapp.com'
+    ],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.use(express.json());
 
