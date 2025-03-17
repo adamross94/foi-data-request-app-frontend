@@ -7,9 +7,10 @@ const app = express();
 
 // Enable CORS for the production frontend URL
 app.use(cors({
-  origin: 'https://foi-data-app-frontend-a3384cca308e.herokuapp.com', // Allow your published frontend
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed methods
-  credentials: true, // Enable credentials if needed (cookies, JWT)
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  credentials: true,
+  optionsSuccessStatus: 200,
 }));
 
 app.use(express.json());
