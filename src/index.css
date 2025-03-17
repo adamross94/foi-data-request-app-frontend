@@ -1,0 +1,81 @@
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------------
+   NHS-Themed Global Custom Styles
+----------------------------------- */
+
+/* Root Variables for NHS Colors & Fonts */
+:root {
+  --nhs-blue: #005EB8;
+  --nhs-dark-blue: #003087;
+  --nhs-light-blue: #E8F2F9;
+  --font-primary: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Basic Body Styling */
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: #f8fafc; /* Tailwind's gray-100 */
+  color: #213547;
+}
+
+/* Global Focus States for Accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid var(--nhs-dark-blue);
+  outline-offset: 2px;
+}
+
+/* Custom Button Styling (NHS Theme) */
+.btn-nhs {
+  background-color: var(--nhs-blue);
+  color: #fff;
+}
+.btn-nhs:hover {
+  background-color: var(--nhs-dark-blue);
+}
+
+/* Toast Notification Styling */
+#toast {
+  transition: opacity 0.5s ease-in-out;
+  font-weight: 600;
+}
+
+/* Chart Container (Optional Fixed Height) */
+.chart-container {
+  min-height: 250px;
+}
+
+/* Link Hover Styling */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Example Button Styling (Global) */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: var(--nhs-blue);
+}
+button:focus {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Optional Global Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
