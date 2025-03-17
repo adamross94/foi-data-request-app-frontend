@@ -22,7 +22,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       // Use the full URL for signup
-      const response = await axios.post(signUpUrl, form);
+      const response = await axios.post(signUpUrl, form, { withCredentials: true });
       if (response.status === 201) {
         // After sign-up, automatically sign in using the full URL for sign in
         const signInResponse = await axios.post(signInUrl, {

@@ -16,7 +16,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       // Use the full URL for sign in
-      const response = await axios.post(signInUrl, form);
+      const response = await axios.post(signInUrl, form, { withCredentials: true });
       signIn(response.data.token, response.data.user);
       navigate('/dashboard'); // Redirect after successful sign in
     } catch (error) {
