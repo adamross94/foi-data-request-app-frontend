@@ -18,11 +18,11 @@ const SignUp = () => {
     e.preventDefault();
     try {
       // Send sign-up data to backend API for registration
-      const response = await axios.post('http://localhost:5000/api/auth/signup', form);
+      const response = await axios.post('https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/signup', form);
       
       if (response.status === 201) {
         // After sign-up, automatically sign in the user
-        const signInResponse = await axios.post('http://localhost:5000/api/auth/signin', {
+        const signInResponse = await axios.post('https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/signin', {
           username: form.username,
           password: form.password
         });
