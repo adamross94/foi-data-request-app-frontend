@@ -14,19 +14,22 @@ const SignUp = () => {
   });
   const { signIn } = useContext(AuthContext);
 
+  // Set your backend endpoints here:
+  const signUpUrl = 'https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/api/auth/signup';
+  const signInUrl = 'https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/api/auth/signin';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send sign-up data to backend API for registration
-      const response = await axios.post('https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/signup', form);
-      
+      // Use the full URL for signup
+      const response = await axios.post(signUpUrl, form);
       if (response.status === 201) {
-        // After sign-up, automatically sign in the user
-        const signInResponse = await axios.post('https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/signin', {
+        // After sign-up, automatically sign in using the full URL for sign in
+        const signInResponse = await axios.post(signInUrl, {
           username: form.username,
           password: form.password
         });
-        signIn(signInResponse.data.token, signInResponse.data.user); // Store token and user info
+        signIn(signInResponse.data.token, signInResponse.data.user);
       }
     } catch (error) {
       console.error('Sign-up error:', error.response ? error.response.data : error);

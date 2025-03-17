@@ -1,34 +1,33 @@
+// src/components/SignIn.jsx
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirecting after sign-in
-import { AuthContext } from '../context/AuthContext'; // Import the AuthContext to handle user authentication
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const [form, setForm] = useState({ username: '', password: '' });
-  const { signIn } = useContext(AuthContext); // Get signIn function from AuthContext
-  const navigate = useNavigate(); // Initialize useNavigate for programmatic redirection
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Set your backend endpoint for sign in
+  const signInUrl = 'https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/api/auth/signin';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send sign-in data to backend API for authentication
-      const response = await axios.post('https://foi-data-app-backend-sql-504a640fbdc3.herokuapp.com/signin', form);
-
-      // Store the token and user information using context
+      // Use the full URL for sign in
+      const response = await axios.post(signInUrl, form);
       signIn(response.data.token, response.data.user);
-
-      // Redirect the user to the dashboard after successful login
-      navigate('/dashboard'); // Redirect after successful login
+      navigate('/dashboard'); // Redirect after successful sign in
     } catch (error) {
       console.error('Sign-in error:', error.response ? error.response.data : error);
-      alert('Invalid credentials. Please try again.'); // Show error message on failure
+      alert('Invalid credentials. Please try again.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-
       <input
         type="text"
         placeholder="Username"
@@ -37,7 +36,6 @@ const SignIn = () => {
         required
         className="border p-2 rounded w-full mb-2"
       />
-
       <input
         type="password"
         placeholder="Password"
@@ -46,7 +44,6 @@ const SignIn = () => {
         required
         className="border p-2 rounded w-full mb-2"
       />
-
       <button type="submit" className="bg-nhs-blue text-white px-4 py-2 rounded hover:bg-nhs-dark-blue">
         Sign In
       </button>
