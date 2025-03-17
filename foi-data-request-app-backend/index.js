@@ -1,11 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./config/database'); // Import the Sequelize instance
+const sequelize = require('./config/database');
 
 const app = express();
 
-// Enable CORS
+// CORS config
 app.use(
   cors({
     origin: [
@@ -19,10 +19,10 @@ app.use(
   })
 );
 
-// Explicitly handle OPTIONS (preflight) for all routes
+// Ensure preflight requests are also handled
 app.options('*', cors());
 
-// Parse incoming JSON
+// JSON parsing
 app.use(express.json());
 
 // Test route
@@ -30,15 +30,15 @@ app.get('/', (req, res) => {
   res.send('FOI & Data Request Management API');
 });
 
-// Mount authentication routes
+// Authentication routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
-// Mount request routes
+// Request routes
 const requestRoutes = require('./routes/requests');
 app.use('/api/requests', requestRoutes);
 
-// Sync models
+// Sequelize sync
 sequelize.sync()
   .then(() => {
     console.log('Database synced successfully');
