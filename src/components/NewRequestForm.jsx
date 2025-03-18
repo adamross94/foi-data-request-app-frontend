@@ -194,7 +194,7 @@ const NewRequestForm = () => {
       };
 
       // POST the request to your API endpoint, including the auth token in headers
-      const response = await axios.post('http://localhost:5000/api/requests', submissionData, {
+      const response = await axios.post('https://foi-data-request-backend-88ad83e1d7ba.herokuapp.com/api/requests', submissionData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
           'Content-Type': 'application/json'

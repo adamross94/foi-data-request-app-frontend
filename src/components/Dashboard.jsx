@@ -37,7 +37,7 @@ const Dashboard = () => {
   // Fetch live requests from your API
   const fetchRequests = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/requests', {
+      const res = await axios.get('https://foi-data-request-backend-88ad83e1d7ba.herokuapp.com/api/requests', {
         headers: { Authorization: `Bearer ${auth.token}` }
       });
       setRequests(res.data.requests);
